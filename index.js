@@ -9,15 +9,17 @@ app.get('/', function (req, res){
   res.sendFile('index.html');
 });
 
+var incr = 0;
 io.on('connection', function (socket) {
-	io.emit('user-connect', socket.id + ' connected.');
+	socket.name = 'Default' + incr++;
+	io.emit('user-connect', { username: socket.name });
 
-	socket.on('chat message', function (msg) {
-		io.emit('chat message', msg);
+	socket.on('chat-message', function (msg) {
+		io.emit('chat-message', { username: socket.name, message: msg });
 	});
 
 	socket.on('disconnect', function (msg) {
-		io.emit('user-disconnect', socket.id + ' disconnected.')
+		io.emit('user-disconnect', {username: socket.name });
 	});
 });
 
