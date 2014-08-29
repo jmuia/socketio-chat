@@ -17,6 +17,10 @@ $('form').submit(function(){
 	
 	if (index < 0) {
 		socket.emit('chat-message', input);
+		var username = $('<strong>').text('You: ');
+		var chatmsg = $('<li>').append(username).append(input);
+		$('#messages').append(chatmsg);
+
 	} else if (OPTIONS[index] === '/help') {
 		appendHelp();
 	} else if (OPTIONS[index] === '/setname') {

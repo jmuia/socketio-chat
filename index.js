@@ -15,7 +15,7 @@ io.on('connection', function (socket) {
 	io.emit('user-connect', { username: socket.name });
 
 	socket.on('chat-message', function (msg) {
-		io.emit('chat-message', { username: socket.name, message: msg });
+		socket.broadcast.emit('chat-message', { username: socket.name, message: msg });
 	});
 
 	socket.on('disconnect', function (msg) {
