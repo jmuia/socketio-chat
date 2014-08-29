@@ -1,5 +1,11 @@
 var OPTIONS = [
+	'/help',
 	'/setname'
+];
+
+var HELP = [
+	"Available Commands:",
+    "/setname <name>"
 ];
 
 var socket = io();
@@ -11,6 +17,8 @@ $('form').submit(function(){
 	
 	if (index < 0) {
 		socket.emit('chat-message', input);
+	} else if (OPTIONS[index] === '/help') {
+		appendHelp();
 	} else if (OPTIONS[index] === '/setname') {
 		socket.emit('name-change', pieces[1]);
 	}
@@ -43,3 +51,14 @@ socket.on('name-change', function (data) {
 	var chatmsg = $('<li class="update">').append(oldname).append(' changed their username to ').append(username).append('.');
 	$('#messages').append(chatmsg);
 });
+
+function appendHelp() {
+	var helpList = $('<ul>');
+	
+	$.each(HELP, function (i, item) {
+		var helpItem = $('<li>').text(item);
+		helpList.append(helpItem);
+	});
+
+	$('#messages').append(helpList);	
+}
