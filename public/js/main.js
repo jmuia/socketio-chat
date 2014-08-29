@@ -13,3 +13,7 @@ socket.on('chat message', function(msg){
 socket.on('user-connect', function(msg){
 	$('#messages').append($('<li class="connect">').text(msg));
 });
+
+socket.on('user-disconnect', function(msg){
+	$('#messages').append($('<li class="disconnect">').text(msg));
+});

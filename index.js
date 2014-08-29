@@ -15,6 +15,10 @@ io.on('connection', function (socket) {
 	socket.on('chat message', function (msg) {
 		io.emit('chat message', msg);
 	});
+
+	socket.on('disconnect', function (msg) {
+		io.emit('user-disconnect', socket.id + ' disconnected.')
+	});
 });
 
 http.listen(3000, function (){

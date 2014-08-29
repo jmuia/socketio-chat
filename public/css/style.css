@@ -7,3 +7,4 @@ form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 
 #messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }
 #messages li.connect { background: #080; color: #FFF; }
+#messages li.disconnect { background: #C00; color: #FFF; }
